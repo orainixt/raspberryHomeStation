@@ -1,8 +1,8 @@
 1# Methods used in the main window are regrouped here
 from datetime import datetime
+from tkinter import PhotoImage
 import csv 
 import os
-from PIL import Image
 import requests 
 
 # Functions for the Date 
@@ -39,16 +39,15 @@ def convertListToStringAppointment(l):
 	for i in range(0,len(l),3):
 		string += l[i] + " " + l[i+1] + " " + l[i+2] + "\n"
 			
-	return string
-			
 # Functions for the gif / media section 
-def loadImage(path):
+def loadImage():
 	"""
 	This function is loading an image with the pillow module 
-	:param path: the path of the image
-	:return: a pillow image in a tkinter compatible format
+	:return: a PhotoImage in a tkinter compatible format
 	""" 
-	pass
+	relativePath = os.path.join("..","data","cat.gif")
+	image = PhotoImage(file=relativePath)
+	return image
 			
 # Functions for the note section 
 

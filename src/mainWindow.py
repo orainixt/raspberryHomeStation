@@ -38,6 +38,11 @@ class InterfaceApp:
                 noteLabel.pack(expand=True,fill="both")
                 noteLabel.pack_propagate(False)
                 
+            elif i == 3:
+                photoImage = loadImage()
+                imageLabel = tk.Label(frame,image=photoImage)
+                imageLabel.pack()
+                
             elif i == 4: 
                 weatherString = getWeatherData()
                 weatherLabel = tk.Label(frame, text=weatherString) 
