@@ -1,5 +1,6 @@
 import tkinter as tk
-from fileUtils import *
+from weatherWidget import *
+
 
 class InterfaceApp:
     def __init__(self, root):
@@ -12,6 +13,7 @@ class InterfaceApp:
     def create_widgets(self):
         # Créer les six carrés avec des étiquettes d'informations
         for i in range(8):
+            
             frame = tk.Frame(self.root, width=200, height=240, borderwidth=2, relief="solid")
             rowPosition = i//4 
             frame.grid(row=rowPosition, column=i%4, padx=10, pady=10)
@@ -20,33 +22,25 @@ class InterfaceApp:
             
             if i == 0: 
                 currentDate = getCurrentDate()
-                dateLabel = tk.Label(frame, text =currentDate,justify="center")
-                dateLabel.pack(expand = True, fill="both")
-                dateLabel.pack_propagate(False)
+                weatherString = getWeatherData()
+                stringLabel = currentDate + "\n" + weatherString
+                dateLabel = tk.Label(frame, text = stringLabel,justify="center")
+                dateLabel.pack()
                 
             elif i == 1: 
                 listOfAppointment = readCSVFileForAppointment()
                 stringOfAppointment = convertListToStringAppointment(listOfAppointment)
-                appointmentLabel = tk.Label(frame, text=stringOfAppointment,justify="center")
-                appointmentLabel.pack(expand=True,fill="both")
-                appointmentLabel.pack_propagate(False)
+                appointmentLabel = tk.Label(frame, text=stringOfAppointment)
+                addAppointmentButton = tk.Button(frame,text="Create New Appointment")
+                appointmentLabel.pack()
+                addAppointmentButton.pack() 
                 
             elif i == 2:
                 listOfNotes = readCSVFileForNotes()
                 stringOfNotes = convertListToStringNote(listOfNotes)
                 noteLabel = tk.Label(frame, text=stringOfNotes, justify="center")
-                noteLabel.pack(expand=True,fill="both")
-                noteLabel.pack_propagate(False)
+                noteLabel.pack()
                 
-            elif i == 3:
-                photoImage = loadImage()
-                imageLabel = tk.Label(frame,image=photoImage)
-                imageLabel.pack()
-                
-            elif i == 4: 
-                weatherString = getWeatherData()
-                weatherLabel = tk.Label(frame, text=weatherString) 
-                weatherLabel.pack()
             else : 
                 label = tk.Label(frame, text=f"Information {i+1}")
                 label.pack()
