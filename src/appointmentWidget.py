@@ -1,4 +1,5 @@
 import csv
+import os 
 
 # Functions for the Appointment 
 def readCSVFileForAppointment(): 

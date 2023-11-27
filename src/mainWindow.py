@@ -1,5 +1,7 @@
 import tkinter as tk
 from weatherWidget import *
+from appointmentWidget import * 
+from noteWidget import * 
 
 
 class InterfaceApp:
