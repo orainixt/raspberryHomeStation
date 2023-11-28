@@ -1,17 +1,21 @@
 import tkinter as tk
 from weatherWidget import *
 from appointmentWidget import * 
-from noteWidget import * 
+from noteWidget import *    
 
 
 class InterfaceApp:
+    
     def __init__(self, root):
         self.root = root
         self.root.title("Interface Raspberry Pi")
         self.root.geometry("800x480")  # Ajustez la taille en fonction de la résolution de votre écran
 
         self.create_widgets()
-
+    # Functions that'll be used by Tkinter componants
+    def onButtonClick():
+        buttonFunction(frame)
+        
     def create_widgets(self):
         # Créer les six carrés avec des étiquettes d'informations
         for i in range(8):
@@ -33,9 +37,9 @@ class InterfaceApp:
                 listOfAppointment = readCSVFileForAppointment()
                 stringOfAppointment = convertListToStringAppointment(listOfAppointment)
                 appointmentLabel = tk.Label(frame, text=stringOfAppointment)
-                addAppointmentButton = tk.Button(frame,text="Create New Appointment")
+                appointmentButton = tk.Button(frame,text="Create New Appointment",command=lambda frame=frame:buttonFunction(frame))
                 appointmentLabel.pack()
-                addAppointmentButton.pack() 
+                appointmentButton.pack() 
                 
             elif i == 2:
                 listOfNotes = readCSVFileForNotes()

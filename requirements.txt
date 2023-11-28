@@ -1,7 +1,7 @@
 # Requirement file for the Raspberry Pi Station 
 
 # Main requirement (include in the standart library 
-tkinter
+
 
 # Alt requirement 
 tkcalendar==1.6.1
