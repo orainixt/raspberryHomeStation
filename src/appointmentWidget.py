@@ -76,7 +76,8 @@ def buttonFunction(parentFrame):
 	pickerDate.pack()
 	
 	# Information "Please pick an hour"
-	textLabel = tk.Label(optionFrame, text="Please pick an hour") 
+	textLabel = ttk.Label(optionFrame, text="Please pick an hour") 
+	textLabel.pack()
 	
 	#Third pannel (<=> hour)
 	listHour = [] 
@@ -85,7 +86,7 @@ def buttonFunction(parentFrame):
 		 
 	varHour = tk.StringVar(value=listHour[0])
 	
-	hourPanel = tk.OptionMenu(optionFrame,varHour, *listHour)
+	hourPanel = ttk.OptionMenu(optionFrame,varHour, *listHour)
 	hourPanel.pack()
 	
 	listMinute = []
@@ -94,7 +95,7 @@ def buttonFunction(parentFrame):
 	
 	varMinute = tk.StringVar(value=listMinute[0]) 
 	
-	minutePannel = tk.OptionMenu(optionFrame, varMinute, *listMinute) 
+	minutePannel = ttk.OptionMenu(optionFrame, varMinute, *listMinute) 
 	minutePannel.pack()
 	
 	
