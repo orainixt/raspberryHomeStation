@@ -27,7 +27,7 @@ This is the code for my own raspberry station
 - `desactivate`
 
 ## Main File 
-- The main file is available at [main.py](src/mainWindow.py)
+- The main file is available at [main](src/mainWindow.py)
 - For now, you can launch it like that : 
 - ```	root/src
 	python3 mainWindow.py```
