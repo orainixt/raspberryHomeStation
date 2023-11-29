@@ -13,21 +13,21 @@ This is the code for my own raspberry station
 ## To activate the venv
 - If it's your first time using this repository, you need to launch a virtual enviromnent 
 - First launch : (for Linux / macOs)
-```	bash 
+- ```	bash 
 	python3 -m venv venv
 	source venv/bin/activate
 	pip install -r requirements.txt ```
 - First launch : (for Windows)
-```	shell
+- ```	shell
 	python3 -m venv venv 
 	venv/Scripts/activate```
 
 ## To desactivate it (when you are done)
-- Quite easy : (for all os)  
-`desactivate`
+- Quite easy : (for all os)
+- `desactivate`
 
 ## Main File 
 - The main file is available at [main.py](src/mainWindow.py)
 - For now, you can launch it like that : 
-```	root/src
+- ```	root/src
 	python3 mainWindow.py```
