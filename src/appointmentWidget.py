@@ -28,7 +28,7 @@ def convertListToStringAppointment(l):
 	:param l: the list
 	:return: the string of all the information
 	"""
-	string = "Titre Date Heure" + "\n" 
+	string = "" 
 	for i in range(0,len(l),3):
 		string += l[i] + " " + l[i+1] + " " + l[i+2] + "\n"
 	return string
@@ -58,26 +58,26 @@ def buttonFunction(parentFrame):
 	optionFrame.title("Create an Appointment")
 	
 	mainLabel = tk.Label(optionFrame, text="Quel type de RDV?")
-	mainLabel.pack() 
+	mainLabel.grid(0,0) 
 	
 	#First pannel (<=> title) 
 	listPannel1 = ["Psy","Fabien","Médecin"]
 	varPannel1 = tk.StringVar(value=listPannel1[0])
 	
 	pannel1 = tk.OptionMenu(optionFrame,varPannel1, *listPannel1)
-	pannel1.pack()
+	pannel1.grid(0,1)
 	
 	#Second pannel (<=> date) 
 	dateLabel = tk.Label(optionFrame, text= "Please pick a date :")
-	dateLabel.pack()
+	dateLabel.pack(0,2)
 	
 	selectedDate = tk.StringVar()
 	pickerDate = DateEntry(optionFrame, textvariable=selectedDate, date_pattern="yyyy-mm-dd")
-	pickerDate.pack()
+	pickerDate.grid(0,3)
 	
 	# Information "Please pick an hour"
 	textLabel = ttk.Label(optionFrame, text="Please pick an hour") 
-	textLabel.pack()
+	textLabel.grid(0,4)
 	
 	#Third pannel (<=> hour)
 	listHour = [] 
@@ -87,7 +87,7 @@ def buttonFunction(parentFrame):
 	varHour = tk.StringVar(value=listHour[0])
 	
 	hourPanel = ttk.OptionMenu(optionFrame,varHour, *listHour)
-	hourPanel.pack()
+	hourPanel.grid(0,5)
 	
 	listMinute = []
 	for i in range(61): 
@@ -96,7 +96,7 @@ def buttonFunction(parentFrame):
 	varMinute = tk.StringVar(value=listMinute[0]) 
 	
 	minutePannel = ttk.OptionMenu(optionFrame, varMinute, *listMinute) 
-	minutePannel.pack()
+	minutePannel.grid(1,5)
 	
 	
 	
