@@ -58,28 +58,29 @@ def buttonFunction(parentFrame):
 	optionFrame.title("Create an Appointment")
 	
 	mainLabel = tk.Label(optionFrame, text="Quel type de RDV?")
-	mainLabel.grid(0,0) 
+	mainLabel.grid(row=0,column=0,sticky=tk.N+tk.W + tk.E + tk.S) 
 	
 	#First pannel (<=> title) 
 	listPannel1 = ["Psy","Fabien","Médecin"]
 	varPannel1 = tk.StringVar(value=listPannel1[0])
 	
 	pannel1 = tk.OptionMenu(optionFrame,varPannel1, *listPannel1)
-	pannel1.grid(0,1)
+	pannel1.grid(row=1,column=0)
 	
 	#Second pannel (<=> date) 
 	dateLabel = tk.Label(optionFrame, text= "Please pick a date :")
-	dateLabel.pack(0,2)
+	dateLabel.grid(row=2,column=0)
 	
 	selectedDate = tk.StringVar()
 	pickerDate = DateEntry(optionFrame, textvariable=selectedDate, date_pattern="yyyy-mm-dd")
-	pickerDate.grid(0,3)
+	pickerDate.grid(row=3,column=0)
 	
 	# Information "Please pick an hour"
 	textLabel = ttk.Label(optionFrame, text="Please pick an hour") 
-	textLabel.grid(0,4)
+	textLabel.grid(row=4,column=0)
 	
-	#Third pannel (<=> hour)
+	# Third pannel (<=> hour)
+	# First menu 
 	listHour = [] 
 	for i in range(25):
 		listHour.append(i)
@@ -87,8 +88,13 @@ def buttonFunction(parentFrame):
 	varHour = tk.StringVar(value=listHour[0])
 	
 	hourPanel = ttk.OptionMenu(optionFrame,varHour, *listHour)
-	hourPanel.grid(0,5)
+	hourPanel.grid(row=5,column=0)
 	
+	# Letter h 
+	labelCharactor = tk.Label(optionFrame, text="h") 
+	labelCharactor.grid(row=6, column = 1)
+	
+	# Second menu
 	listMinute = []
 	for i in range(61): 
 		listMinute.append(i) 
@@ -96,7 +102,7 @@ def buttonFunction(parentFrame):
 	varMinute = tk.StringVar(value=listMinute[0]) 
 	
 	minutePannel = ttk.OptionMenu(optionFrame, varMinute, *listMinute) 
-	minutePannel.grid(1,5)
+	minutePannel.grid(row=5,column=2)
 	
 	
 	
