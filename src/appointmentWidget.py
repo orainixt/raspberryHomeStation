@@ -4,12 +4,12 @@ import tkinter as tk
 from tkinter import ttk 
 from tkcalendar import DateEntry
 
-class AppointmentWidget:
+ #class NewAppointment:
 	 
-	def __init__(self,appointmentType,appointmentDate,appointmentHour): 
-		self.appointmentType = appointmentType
-		self.appointmentDate = appointmentDate
-		self.appointmentHour = appointmentHour 
+	#def __init__(self,appointmentType,appointmentDate,appointmentHour): 
+		  #self.appointmentType = appointmentType
+		#self.appointmentDate = appointmentDate
+		#self.appointmentHour = appointmentHour 
 	
 	
 	
@@ -52,7 +52,7 @@ def addAppointment(title,date,hour):
 	relativePath = os.path.join('..','data','appointmentList.csv') 
 	with open (relativePath, mode= 'a', newline='') as csvFile:
 			csvWriter = csv.writer(csvFile)
-			stringToAdd = title + "," + content + "," + date
+			stringToAdd = title + "," + date + "," + hour
 			csvWriter.writerow(stringToAdd) 
 
 def buttonFunction(parentFrame): 
@@ -111,7 +111,13 @@ def buttonFunction(parentFrame):
 	
 	confirmButton = tk.Button(optionFrame, text="Confirm",command=lambda:validateAppointment(optionFrame)
 		
-	
-	
+def validateAppointment(optionFrame,typeRDV,date,hour,minute,csvFile):
+	typeRDVSelected = typeRDV.get()
+	dateSelected = date.get()
+	hourSelected = hour.get() 
+	minuteSelected = minute.get()
+	hourFinal = hourSelected + "h" + minuteSelected
+	addAppointment(typeRDVSelected,dateSelected,hourFinal) 
+	optionFrame.destroy()
 	
 	 
