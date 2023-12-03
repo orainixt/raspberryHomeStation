@@ -86,11 +86,11 @@ def buttonFunction(parentFrame):
 	
 	# Information "Please pick an hour"
 	textLabel = ttk.Label(optionFrame, text="Please pick an hour") 
-	textLabel.grid(row=4,column=0,columnspan=2, sticky=tk.W  tk.E)
+	textLabel.grid(row=4,column=0,columnspan=2, sticky=tk.W + tk.E)
 	
 	# Third pannel (<=> hour)
 	# First menu 
-	listHour = [str(i) for i in range(26)		 
+	listHour = [str(i) for i in range(26)]		 
 	varHour = tk.StringVar(value=listHour[0])
 	
 	hourPanel = ttk.OptionMenu(optionFrame,varHour, *listHour)
@@ -101,7 +101,7 @@ def buttonFunction(parentFrame):
 	labelCharactor.grid(row=6, column=1, sticky=tk.N + tk.W)
 	
 	# Second menu
-	listMinute = [str(i) for i in range(61) 
+	listMinute = [str(i) for i in range(61)]
 	varMinute = tk.StringVar(value=listMinute[0]) 
 	
 	minutePannel = ttk.OptionMenu(optionFrame, varMinute, *listMinute) 
@@ -109,7 +109,7 @@ def buttonFunction(parentFrame):
 	
 	# The confirm button 
 	
-	confirmButton = tk.Button(optionFrame, text="Confirm",command=lambda:validateAppointment(optionFrame)
+	confirmButton = tk.Button(optionFrame, text="Confirm",command=lambda:validateAppointment(optionFrame,selectedDate, varHour, varMinute))
 		
 def validateAppointment(optionFrame,typeRDV,date,hour,minute,csvFile):
 	typeRDVSelected = typeRDV.get()
