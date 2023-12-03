@@ -109,9 +109,10 @@ def buttonFunction(parentFrame):
 	
 	# The confirm button 
 	
-	confirmButton = tk.Button(optionFrame, text="Confirm",command=lambda:validateAppointment(optionFrame,selectedDate, varHour, varMinute))
-		
-def validateAppointment(optionFrame,typeRDV,date,hour,minute,csvFile):
+	confirmButton = tk.Button(optionFrame, text="Confirm",command=lambda:validateAppointment(optionFrame, varPannel1,selectedDate, varHour, varMinute))
+	confirmButton.grid(row=6,column=0,columnspan=2)
+	
+def validateAppointment(frame,typeRDV,date,hour,minute):
 	typeRDVSelected = typeRDV.get()
 	dateSelected = date.get()
 	hourSelected = hour.get() 
