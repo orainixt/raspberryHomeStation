@@ -3,6 +3,7 @@ import os
 import tkinter as tk
 from tkinter import ttk 
 from tkcalendar import DateEntry
+from mainWindow import *
 
  #class NewAppointment:
 	 
@@ -123,5 +124,5 @@ def validateAppointment(frame,typeRDV,date,hour,minute):
 	hourFinal = hourSelected + "h" + minuteSelected
 	addAppointment(typeRDVSelected + "," + dateSelected + "," + hourFinal)
 	frame.destroy()
-	
+	update()
 	 

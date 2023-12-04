@@ -12,9 +12,20 @@ class InterfaceApp:
         self.root.geometry("800x480")  # Ajustez la taille en fonction de la résolution de votre écran
 
         self.create_widgets()
+        
     # Functions that'll be used by Tkinter componants
-    def onButtonClick():
-        buttonFunction(frame)
+    
+        
+    def update(self):
+        
+        # Update Weather and Date
+         
+        currentDate = getCurrentDate() 
+        weatherString = getWeatherData() 
+        stringLabel = currentDate + "\n" + weatherString
+        listOfAppointment = readCSVFileForAppointment()
+        stringOfAppointment = convertListToStringAppointment(listOfAppointment)
+        appointmentLabel.config(text=stringOfAppointment) 
         
     def create_widgets(self):
         # Créer les six carrés avec des étiquettes d'informations
