@@ -22,13 +22,12 @@ def readCSVFileForAppointment():
 	"""
 	relativePath = os.path.join('..','data','appointmentList.csv') 
 	appointmentList = []
-	with open(relativePath,newline='') as csvFile:
+	with open(relativePath,mode='r', encoding='utf-8') as csvFile:
 		csvReader = csv.DictReader(csvFile) 
 
 		for ligne in csvReader:
-			appointmentList.append(ligne['Titre'])
-			appointmentList.append(ligne['Date'])
-			appointmentList.append(ligne['Heure'])
+			appointmentList.append(','.join(ligne))
+	print(appointmentList)
 	return appointmentList 
 	
 def convertListToStringAppointment(l): 
@@ -38,7 +37,7 @@ def convertListToStringAppointment(l):
 	:return: the string of all the information
 	"""
 	string = "" 
-	for i in range(0,len(l),3):
+	for i in range(0,len(l),3):  
 		string += l[i] + " " + l[i+1] + " " + l[i+2] + "\n"
 	return string
 
