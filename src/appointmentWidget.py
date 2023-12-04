@@ -42,7 +42,7 @@ def convertListToStringAppointment(l):
 		string += l[i] + " " + l[i+1] + " " + l[i+2] + "\n"
 	return string
 
-def addAppointment(title,date,hour): 
+def addAppointment(string): 
 	"""
 	this function allow user to add an appointment to the CSV File
 	:param title: the title of the appointment 
@@ -52,8 +52,7 @@ def addAppointment(title,date,hour):
 	relativePath = os.path.join('..','data','appointmentList.csv') 
 	with open (relativePath, mode= 'a', newline='') as csvFile:
 			csvWriter = csv.writer(csvFile)
-			stringToAdd = title + "," + date + "," + hour
-			csvWriter.writerow(stringToAdd) 
+			csvWriter.writerow(string) 
 
 def buttonFunction(parentFrame): 
 	"""
@@ -81,7 +80,7 @@ def buttonFunction(parentFrame):
 	dateLabel.grid(row=2,column=0,columnspan=3)
 	
 	selectedDate = tk.StringVar()
-	pickerDate = DateEntry(optionFrame, textvariable=selectedDate, date_pattern="yyyy-mm-dd")
+	pickerDate = DateEntry(optionFrame, textvariable=selectedDate, date_pattern="dd/mm/yyyy")
 	pickerDate.grid(row=3,column=0,columnspan=3)
 	
 	# Information "Please pick an hour"
@@ -117,8 +116,12 @@ def validateAppointment(frame,typeRDV,date,hour,minute):
 	dateSelected = date.get()
 	hourSelected = hour.get() 
 	minuteSelected = minute.get()
+	if int(hourSelected) < 10: 
+		hourSelected = "0" + hourSelected 
+	if int(minuteSelected) < 10: 
+		minuteSelected = "0" + minuteSelected 
 	hourFinal = hourSelected + "h" + minuteSelected
-	addAppointment(typeRDVSelected,dateSelected,hourFinal) 
-	optionFrame.destroy()
+	addAppointment(typeRDVSelected + "," + dateSelected + "," + hourFinal)
+	frame.destroy()
 	
 	 
