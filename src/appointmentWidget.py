@@ -50,6 +50,7 @@ def addAppointment(string):
 	:param hour: the hour of the appointment
 	"""
 	relativePath = os.path.join('..','data','appointmentList.csv') 
+	 
 	with open (relativePath, mode= 'a', newline='',encoding='utf-8') as csvFile:
 			csvWriter = csv.writer(csvFile,quoting=csv.QUOTE_MINIMAL)
 			csvWriter.writerow([string]) 
