@@ -81,7 +81,6 @@ class InterfaceApp:
                 noteButton.pack()
 
             elif i == 3 :
-                label = tk.Label(frame,text="Welcome to the Alarm")  
                 listOfAlarms = self.alarmManager.readCSVFileForAlarm()
                 stringOfAlarms = self.alarmManager.convertListToStringAlarm(listOfAlarms)
                 self.alarmLabel = tk.Label(frame,text=stringOfAlarms)
