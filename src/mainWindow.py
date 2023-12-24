@@ -10,7 +10,7 @@ class InterfaceApp:
         self.root = root
         self.root.title("Interface Raspberry Pi")
         self.root.geometry("800x480")  #Ajustez la taille en fonction de la résolution de votre écran ("800x480") raspberry
-        self.appointmentManager = AppointmentManager()
+        self.appointmentManager = AppointmentManager(self)
         self.create_widgets()
         
     # Functions that'll be used by Tkinter componants
@@ -23,9 +23,10 @@ class InterfaceApp:
         currentDate = getCurrentDate() 
         weatherString = getWeatherData() 
         stringLabel = currentDate + "\n" + weatherString
+        self.dateLabel.config(text=stringLabel)
         listOfAppointment = self.appointmentManager.readCSVFileForAppointment()
         stringOfAppointment = self.appointmentManager.convertListToStringAppointment(listOfAppointment)
-        appointmentLabel.config(text=stringOfAppointment) 
+        self.appointmentLabel.config(text=stringOfAppointment) 
         
     def create_widgets(self):
         # Créer les six carrés avec des étiquettes d'informations
@@ -41,18 +42,18 @@ class InterfaceApp:
                 currentDate = getCurrentDate()
                 weatherString = getWeatherData()
                 stringLabel = currentDate + "\n" + weatherString
-                dateLabel = tk.Label(frame, text = stringLabel,justify="center")
-                dateLabel.pack()
+                self.dateLabel = tk.Label(frame, text = stringLabel,justify="center")
+                self.dateLabel.pack()
                 
             elif i == 1: 
                 listOfAppointment = self.appointmentManager.readCSVFileForAppointment()
                 stringOfAppointment = self.appointmentManager.convertListToStringAppointment(listOfAppointment)
-                appointmentLabel = tk.Label(frame, text=stringOfAppointment)
+                self.appointmentLabel = tk.Label(frame, text=stringOfAppointment)
                 appointmentButton = tk.Button(
                     frame,
                     text="Create New Appointment",
                     command=lambda frame=frame:self.appointmentManager.buttonFunction(frame))
-                appointmentLabel.pack()
+                self.appointmentLabel.pack()
                 appointmentButton.pack() 
                 
             elif i == 2:
@@ -75,4 +76,5 @@ class InterfaceApp:
 if __name__ == "__main__":
     root = tk.Tk()
     app = InterfaceApp(root)
+    app.appointmentManager = AppointmentManager(app)
     root.mainloop()

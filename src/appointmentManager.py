@@ -3,14 +3,14 @@ import os
 import tkinter as tk
 from tkcalendar import DateEntry
 from tkinter import ttk
-
 class AppointmentManager:
 
-    def __init__(self):
+    def __init__(self,interfaceApp):
         """
         __ init__() is the AppointmentManager constructor 
         """
         self.filePath = os.path.join('..', 'data', 'appointmentList.csv')
+        self.interfaceApp = interfaceApp
 
     def readCSVFileForAppointment(self):
         """
@@ -102,6 +102,16 @@ class AppointmentManager:
         confirmButton.grid(row=6, column=0, columnspan=2)
 
     def validateAppointment(self, frame, typeRDV, date, hour, minute):
+        """
+        this function is used by the confirm button 
+        it create a "good" appointment (format typeRdv,date,hourFinal)
+        :param frame: the frame of the function 
+        :param typeRDV: the type given by the btn function
+        :param date: the date given by the btn function
+        :param hour: the hour given by the btn function
+        :param minute: the minute given by the btn function
+        :param callback: callback function to update the main window
+        """
         typeRDVSelected = typeRDV.get()
         dateSelected = date.get()
         hourSelected = hour.get()
@@ -112,6 +122,7 @@ class AppointmentManager:
             minuteSelected = "0" + minuteSelected
         hourFinal = hourSelected + "h" + minuteSelected
         self.addAppointment(typeRDVSelected + "," + dateSelected + "," + hourFinal)
+        self.interfaceApp.update()
         frame.destroy()
 
 
