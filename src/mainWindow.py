@@ -1,6 +1,6 @@
 import tkinter as tk
 from weatherWidget import *
-from appointmentWidget import AppointmentManager 
+from appointmentManager import AppointmentManager 
 from noteWidget import *    
 
 
