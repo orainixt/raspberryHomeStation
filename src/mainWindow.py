@@ -1,7 +1,7 @@
 import tkinter as tk
 from weatherWidget import *
-from appointmentManager import AppointmentManager 
-from noteWidget import *    
+from appointmentManager import AppointmentManager  
+from noteManager import NoteManager 
 
 
 class InterfaceApp:
@@ -11,25 +11,35 @@ class InterfaceApp:
         self.root.title("Interface Raspberry Pi")
         self.root.geometry("800x480")  #Ajustez la taille en fonction de la résolution de votre écran ("800x480") raspberry
         self.appointmentManager = AppointmentManager(self)
+        self.noteManager = NoteManager(self)
         self.create_widgets()
         
     # Functions that'll be used by Tkinter componants
     
         
     def update(self):
-        
-        # Update Weather and Date
-         
+        """
+        this function is used every time we need to update the main window 
+        """
+        # DATE 
         currentDate = getCurrentDate() 
         weatherString = getWeatherData() 
         stringLabel = currentDate + "\n" + weatherString
         self.dateLabel.config(text=stringLabel)
+        # APPOINTMENTS
         listOfAppointment = self.appointmentManager.readCSVFileForAppointment()
         stringOfAppointment = self.appointmentManager.convertListToStringAppointment(listOfAppointment)
         self.appointmentLabel.config(text=stringOfAppointment) 
-        
+        # NOTES
+        listOfNotes = self.noteManager.readCSVFileForNotes()
+        stringOfNotes = self.noteManager.convertListToStringNote(listOfNotes)
+        self.noteLabel.config(text=stringOfNotes)
+
+
     def create_widgets(self):
-        # Créer les six carrés avec des étiquettes d'informations
+        """
+        this function create the widget of the main window 
+        """
         for i in range(8):
             
             frame = tk.Frame(self.root, width=200, height=240, borderwidth=2, relief="solid")
@@ -57,10 +67,15 @@ class InterfaceApp:
                 appointmentButton.pack() 
                 
             elif i == 2:
-                listOfNotes = readCSVFileForNotes()
-                stringOfNotes = convertListToStringNote(listOfNotes)
-                noteLabel = tk.Label(frame, text=stringOfNotes, justify="center")
-                noteLabel.pack()
+                listOfNotes = self.noteManager.readCSVFileForNotes()
+                stringOfNotes = self.noteManager.convertListToStringNote(listOfNotes)
+                self.noteLabel = tk.Label(frame, text=stringOfNotes, justify="center")
+                noteButton = tk.Button(
+                    frame,
+                    text="Create New Note",
+                    command=lambda frame=frame:self.noteManager.buttonFunction(frame))
+                self.noteLabel.pack()
+                noteButton.pack()
                 
             else : 
                 label = tk.Label(frame, text=f"Information {i+1}")
@@ -77,4 +92,5 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = InterfaceApp(root)
     app.appointmentManager = AppointmentManager(app)
+    app.noteManager = NoteManager(app)
     root.mainloop()

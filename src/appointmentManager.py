@@ -3,6 +3,7 @@ import os
 import tkinter as tk
 from tkcalendar import DateEntry
 from tkinter import ttk
+
 class AppointmentManager:
 
     def __init__(self,interfaceApp):
@@ -48,14 +49,9 @@ class AppointmentManager:
 
     def buttonFunction(self, parentFrame):
         """
-		validateAppointment is a function that transform the data from the appointment widget popup
-		and update the main window with the new data 
-		:param frame: the frame (the main window in this case)
-		:param typeRDV: the type of rdv 
-		:param date: the date
-		:param hour: the hour
-		:param minute: the minute
-		"""
+        this function is used by the button to create a brand new popup
+        :param parentFrame: used to create a toplevel
+        """
         optionFrame = tk.Toplevel(parentFrame)
         optionFrame.geometry("200x200")
         optionFrame.title("Create an Appointment")
