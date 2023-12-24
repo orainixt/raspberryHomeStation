@@ -2,6 +2,7 @@ import tkinter as tk
 from weatherWidget import *
 from appointmentManager import AppointmentManager  
 from noteManager import NoteManager 
+from alarmManager import AlarmManager
 
 
 class InterfaceApp:
@@ -12,6 +13,7 @@ class InterfaceApp:
         self.root.geometry("800x480")  #Ajustez la taille en fonction de la résolution de votre écran ("800x480") raspberry
         self.appointmentManager = AppointmentManager(self)
         self.noteManager = NoteManager(self)
+        self.alarmManager = AlarmManager(self)
         self.create_widgets()
         
     # Functions that'll be used by Tkinter componants
@@ -73,10 +75,25 @@ class InterfaceApp:
                 noteButton = tk.Button(
                     frame,
                     text="Create New Note",
-                    command=lambda frame=frame:self.noteManager.buttonFunction(frame))
+                    command=lambda frame=frame:self.noteManager.buttonFunction(frame)
+                )
                 self.noteLabel.pack()
                 noteButton.pack()
-                
+
+            elif i == 3 :
+                label = tk.Label(frame,text="Welcome to the Alarm")  
+                listOfAlarms = self.alarmManager.readCSVFileForAlarm()
+                stringOfAlarms = self.alarmManager.convertListToStringAlarm(listOfAlarms)
+                self.alarmLabel = tk.Label(frame,text=stringOfAlarms)
+                alarmButton = tk.Button(
+                    frame,
+                    text="Create New Alarm",
+                    command=lambda frame=frame:self.alarmManager.buttonFunction(frame)
+                )
+                self.alarmLabel.pack()
+                alarmButton.pack()
+
+
             else : 
                 label = tk.Label(frame, text=f"Information {i+1}")
                 label.pack()
