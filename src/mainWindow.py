@@ -1,6 +1,6 @@
 import tkinter as tk
 from weatherWidget import *
-from appointmentWidget import * 
+from appointmentWidget import AppointmentManager 
 from noteWidget import *    
 
 
@@ -10,7 +10,7 @@ class InterfaceApp:
         self.root = root
         self.root.title("Interface Raspberry Pi")
         self.root.geometry("800x480")  #Ajustez la taille en fonction de la résolution de votre écran ("800x480") raspberry
-
+        self.appointmentManager = AppointmentManager()
         self.create_widgets()
         
     # Functions that'll be used by Tkinter componants
@@ -23,8 +23,8 @@ class InterfaceApp:
         currentDate = getCurrentDate() 
         weatherString = getWeatherData() 
         stringLabel = currentDate + "\n" + weatherString
-        listOfAppointment = readCSVFileForAppointment()
-        stringOfAppointment = convertListToStringAppointment(listOfAppointment)
+        listOfAppointment = self.appointmentManager.readCSVFileForAppointment()
+        stringOfAppointment = self.appointmentManager.convertListToStringAppointment(listOfAppointment)
         appointmentLabel.config(text=stringOfAppointment) 
         
     def create_widgets(self):
@@ -45,13 +45,13 @@ class InterfaceApp:
                 dateLabel.pack()
                 
             elif i == 1: 
-                listOfAppointment = readCSVFileForAppointment()
-                stringOfAppointment = convertListToStringAppointment(listOfAppointment)
+                listOfAppointment = self.appointmentManager.readCSVFileForAppointment()
+                stringOfAppointment = self.appointmentManager.convertListToStringAppointment(listOfAppointment)
                 appointmentLabel = tk.Label(frame, text=stringOfAppointment)
                 appointmentButton = tk.Button(
                     frame,
                     text="Create New Appointment",
-                    command=lambda frame=frame:buttonFunction(frame))
+                    command=lambda frame=frame:self.appointmentManager.buttonFunction(frame))
                 appointmentLabel.pack()
                 appointmentButton.pack() 
                 
