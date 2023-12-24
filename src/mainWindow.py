@@ -9,7 +9,7 @@ class InterfaceApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Interface Raspberry Pi")
-        self.root.geometry("800x480")  # Ajustez la taille en fonction de la résolution de votre écran
+        self.root.geometry("800x480")  #Ajustez la taille en fonction de la résolution de votre écran ("800x480") raspberry
 
         self.create_widgets()
         
@@ -48,7 +48,10 @@ class InterfaceApp:
                 listOfAppointment = readCSVFileForAppointment()
                 stringOfAppointment = convertListToStringAppointment(listOfAppointment)
                 appointmentLabel = tk.Label(frame, text=stringOfAppointment)
-                appointmentButton = tk.Button(frame,text="Create New Appointment",command=lambda frame=frame:buttonFunction(frame))
+                appointmentButton = tk.Button(
+                    frame,
+                    text="Create New Appointment",
+                    command=lambda frame=frame:buttonFunction(frame))
                 appointmentLabel.pack()
                 appointmentButton.pack() 
                 
