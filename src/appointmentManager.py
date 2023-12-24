@@ -106,7 +106,6 @@ class AppointmentManager:
         :param date: the date given by the btn function
         :param hour: the hour given by the btn function
         :param minute: the minute given by the btn function
-        :param callback: callback function to update the main window
         """
         typeRDVSelected = typeRDV.get()
         dateSelected = date.get()
