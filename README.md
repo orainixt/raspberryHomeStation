@@ -16,11 +16,13 @@ This is the code for my own raspberry station
 - ```	bash 
 	python3 -m venv venv
 	source venv/bin/activate
-	pip install -r requirements.txt ```
+	pip install -r requirements.txt
+	```
 - First launch : (for Windows)
 - ```	shell
 	python3 -m venv venv 
-	venv/Scripts/activate```
+	venv/Scripts/activate
+	```
 
 ## To desactivate it (when you are done)
 - Quite easy : (for all os)
@@ -30,4 +32,5 @@ This is the code for my own raspberry station
 - The main file is available at [main](src/mainWindow.py)
 - For now, you can launch it like that : 
 - ```	root/src
-	python3 mainWindow.py```
+	python3 mainWindow.py
+	```
