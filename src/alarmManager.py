@@ -94,7 +94,15 @@ class AlarmManager:
         frame.destroy()
 
     def toggleButton(self, buttonVar, button):
+        """
+        this function is called in the mainWindow in the alarms buttons
+        :param buttonVar: the boolean for the state of the button (on/off)
+        :param button: the alarm button 
+        """
         etat = not buttonVar.get() 
         buttonVar.set(etat)
         couleur = "#4CD964" if etat else "#B3B3B3"
         button.config(bg=couleur)
+
+    def playAlarm(): 
+        subprocess.run(["aplay","../data/alarmSound.wav"])

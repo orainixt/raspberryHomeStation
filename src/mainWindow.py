@@ -40,9 +40,7 @@ class InterfaceApp:
         listOfAlarms = self.alarmManager.readCSVFileForAlarm()
         stringOfAlarms = self.alarmManager.convertListToStringAlarm(listOfAlarms)
         self.alarmLabel.config(text=stringOfAlarms)
-        for button, state in self.alarmManager.buttonStates.items():
-            couleur = "#4CD964" if state else "#B3B3B3"
-            button.config(bg=couleur)
+
 
     def onAlarmButtonClick(self, buttonVar, button):
         self.alarmManager.toggleButton(buttonVar, button)
