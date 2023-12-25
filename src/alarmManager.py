@@ -9,6 +9,7 @@ class AlarmManager:
     def __init__(self,interfaceApp):
         self.interfaceApp = interfaceApp
         self.filePath = os.path.join('..','data','alarmList.csv')
+        self.buttonStates = {}
 
     def readCSVFileForAlarm(self):
         """
@@ -92,7 +93,8 @@ class AlarmManager:
         self.interfaceApp.update()
         frame.destroy()
 
-def toggleButton(buttonVar,button):
-    etat = buttonVar.get()
-    couleur = "#4CD964" if etat else "#B3B3B3"
-    button.config(bg=couleur)
+    def toggleButton(self, buttonVar, button):
+        etat = not buttonVar.get() 
+        buttonVar.set(etat)
+        couleur = "#4CD964" if etat else "#B3B3B3"
+        button.config(bg=couleur)

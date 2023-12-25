@@ -2,7 +2,7 @@ import tkinter as tk
 from weatherWidget import *
 from appointmentManager import AppointmentManager  
 from noteManager import NoteManager 
-from alarmManager import AlarmManager, toggleButton
+from alarmManager import AlarmManager
 
 
 class InterfaceApp:
@@ -40,6 +40,12 @@ class InterfaceApp:
         listOfAlarms = self.alarmManager.readCSVFileForAlarm()
         stringOfAlarms = self.alarmManager.convertListToStringAlarm(listOfAlarms)
         self.alarmLabel.config(text=stringOfAlarms)
+        for button, state in self.alarmManager.buttonStates.items():
+            couleur = "#4CD964" if state else "#B3B3B3"
+            button.config(bg=couleur)
+
+    def onAlarmButtonClick(self, buttonVar, button):
+        self.alarmManager.toggleButton(buttonVar, button)
 
     def create_widgets(self):
         """
@@ -97,9 +103,9 @@ class InterfaceApp:
                     alarmButtonVar = tk.BooleanVar()
                     alarmButton = tk.Button(
                         frame,
-                        text="",
+                        text="ON/OFF",
                     )
-                    toggleButton(alarmButtonVar,alarmButton)
+                    alarmButton.config(command=lambda buttonVar=alarmButtonVar, button=alarmButton: self.onAlarmButtonClick(buttonVar, button))
                     self.alarmLabel.grid(row=y,column=0)
                     alarmButton.grid(row=y,column=1)
                     y += 1 
@@ -127,4 +133,5 @@ if __name__ == "__main__":
     app = InterfaceApp(root)
     app.appointmentManager = AppointmentManager(app)
     app.noteManager = NoteManager(app)
+    app.alarmManager = AlarmManager(app)
     root.mainloop()
