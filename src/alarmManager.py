@@ -32,6 +32,7 @@ class AlarmManager:
         for i in range(0,len(l)):
             string += l[i] + "\n"
         return string
+    
 
     def addAlarm(self, string):
         with open(self.filePath, mode='a',newline='',encoding='utf-8') as csvFile:
@@ -87,5 +88,11 @@ class AlarmManager:
         if int(minuteSelected)< 10:
             minuteSelected = "0" + minuteSelected
         hourFinal = hourSelected + "h" + minuteSelected
+        self.addAlarm(hourFinal)
         self.interfaceApp.update()
         frame.destroy()
+
+def toggleButton(buttonVar,button):
+    etat = buttonVar.get()
+    couleur = "#4CD964" if etat else "#B3B3B3"
+    button.config(bg=couleur)

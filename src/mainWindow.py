@@ -2,7 +2,7 @@ import tkinter as tk
 from weatherWidget import *
 from appointmentManager import AppointmentManager  
 from noteManager import NoteManager 
-from alarmManager import AlarmManager
+from alarmManager import AlarmManager, toggleButton
 
 
 class InterfaceApp:
@@ -36,7 +36,10 @@ class InterfaceApp:
         listOfNotes = self.noteManager.readCSVFileForNotes()
         stringOfNotes = self.noteManager.convertListToStringNote(listOfNotes)
         self.noteLabel.config(text=stringOfNotes)
-
+        # ALARMS 
+        listOfAlarms = self.alarmManager.readCSVFileForAlarm()
+        stringOfAlarms = self.alarmManager.convertListToStringAlarm(listOfAlarms)
+        self.alarmLabel.config(text=stringOfAlarms)
 
     def create_widgets(self):
         """
@@ -81,17 +84,32 @@ class InterfaceApp:
                 noteButton.pack()
 
             elif i == 3 :
+
                 listOfAlarms = self.alarmManager.readCSVFileForAlarm()
-                stringOfAlarms = self.alarmManager.convertListToStringAlarm(listOfAlarms)
-                self.alarmLabel = tk.Label(frame,text=stringOfAlarms)
-                alarmButton = tk.Button(
+                
+                y = 1
+                titleLabel = tk.Label(frame,text=listOfAlarms[0])
+                titleLabel.grid(row=0,column=0,columnspan=2)
+
+                for z in range(1,len(listOfAlarms)) : 
+                    alarm = listOfAlarms[z]
+                    self.alarmLabel = tk.Label(frame,text=alarm)
+                    alarmButtonVar = tk.BooleanVar()
+                    alarmButton = tk.Button(
+                        frame,
+                        text="",
+                    )
+                    toggleButton(alarmButtonVar,alarmButton)
+                    self.alarmLabel.grid(row=y,column=0)
+                    alarmButton.grid(row=y,column=1)
+                    y += 1 
+
+                addAlarmButton = tk.Button(
                     frame,
-                    text="Create New Alarm",
+                    text="Add New Alarm",
                     command=lambda frame=frame:self.alarmManager.buttonFunction(frame)
                 )
-                self.alarmLabel.pack()
-                alarmButton.pack()
-
+                addAlarmButton.grid(row=y,column=0,columnspan=2)
 
             else : 
                 label = tk.Label(frame, text=f"Information {i+1}")
